@@ -52,11 +52,13 @@ export default {
   },
   methods: {
     goSearch() {
-      this.$router.push({
-        name: 'search',
-        query: { k: this.keyword },
-        params: { keyword: this.keyword }
-      })
+      console.log(this.$route.query)
+      if (this.$route.query) {
+        console.log(111)
+        let location = { name: 'search', params: { keyword: this.keyword || undefined } }
+        location.query = this.$route.query
+        this.$router.push(location)
+      }
     }
   }
 }

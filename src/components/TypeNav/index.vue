@@ -1,32 +1,34 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <div @mouseleave="changeIndex(-1)">
+      <div @mouseleave="leaveShow" @mouseenter="enterShow">
         <h2 class="all">全部商品分类</h2>
-        <div class="sort">
-          <div class="all-sort-list2" @click="goSearch">
-            <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId" :class='{cur:currentIndex === index}'>
-              <h3 @mouseenter="changeIndex(index)">
-                <!-- <a href="" @click="(e)=>{e.preventDefault()}">{{c1.categoryName}}</a> -->
-                <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{c1.categoryName}}</a>
-              </h3>
-              <div class="item-list clearfix" v-for="c2 in c1.categoryChild" :key="c2.categoryId">
-                <div class="subitem" :style="{display:currentIndex == index ? 'block' : 'none'}">
-                  <dl class="fore">
-                    <dt>
-                      <a :data-categoryName="c1.categoryName" :data-category2Id="c2.categoryId">{{c2.categoryName}}</a>
-                    </dt>
-                    <dd>
-                      <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                        <a :data-categoryName="c1.categoryName" :data-category3Id="c3.categoryId">{{c3.categoryName}}</a>
-                      </em>
-                    </dd>
-                  </dl>
+        <transition name='sort'>
+          <div class="sort" v-show="show">
+            <div class="all-sort-list2" @click="goSearch">
+              <div class="item" v-for="(c1,index) in categoryList" :key="c1.categoryId" :class='{cur:currentIndex === index}'>
+                <h3 @mouseenter="changeIndex(index)">
+                  <!-- <a href="" @click="(e)=>{e.preventDefault()}">{{c1.categoryName}}</a> -->
+                  <a :data-categoryName="c1.categoryName" :data-category1Id="c1.categoryId">{{c1.categoryName}}</a>
+                </h3>
+                <div class="item-list clearfix" v-for="c2 in c1.categoryChild" :key="c2.categoryId">
+                  <div class="subitem" :style="{display:currentIndex == index ? 'block' : 'none'}">
+                    <dl class="fore">
+                      <dt>
+                        <a :data-categoryName="c1.categoryName" :data-category2Id="c2.categoryId">{{c2.categoryName}}</a>
+                      </dt>
+                      <dd>
+                        <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                          <a :data-categoryName="c1.categoryName" :data-category3Id="c3.categoryId">{{c3.categoryName}}</a>
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </transition>
       </div>
       <nav class="nav">
         <a href="###">服装城</a>
@@ -50,11 +52,14 @@ export default {
   name: 'TypeNav',
   data() {
     return {
-      currentIndex: -1
+      currentIndex: -1,
+      show: true
     }
   },
   mounted() {
-    this.$store.dispatch('categoryList')
+    if (this.$route.path != '/home') {
+      this.show = false
+    }
   },
   computed: {
     ...mapState({ categoryList: state => state.home.categoryList })
@@ -75,8 +80,23 @@ export default {
         } else if (category3id) {
           query.category3Id = category3id
         }
-        location.query = query
-        this.$router.push(location)
+        if (this.$route.params) {
+          location.query = query
+          location.params = this.$route.params
+          this.$router.push(location)
+        } else {
+          location.query = query
+          this.$router.push(location)
+        }
+      }
+    },
+    enterShow() {
+      this.show = true
+    },
+    leaveShow() {
+      this.currentIndex = -1
+      if (this.$route.path != '/home') {
+        this.show = false
       }
     }
   }
@@ -203,6 +223,16 @@ export default {
           background-color: skyblue;
         }
       }
+    }
+
+    .sort-enter {
+      opacity: 0;
+    }
+    .sort-enter-to {
+      opacity: 1;
+    }
+    .sort-enter-active {
+      transition: all 0.3s linear;
     }
   }
 }

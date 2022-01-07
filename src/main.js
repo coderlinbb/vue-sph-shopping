@@ -6,6 +6,8 @@ import store from '@/store'
 import TypeNav from '@/components/TypeNav'
 Vue.component(TypeNav.name, TypeNav)
 
+import '@/mock/mockServe.js'
+
 Vue.config.productionTip = false
 
 
