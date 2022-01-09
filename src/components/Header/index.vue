@@ -50,6 +50,15 @@ export default {
       keyword: ''
     }
   },
+  mounted() {
+    this.$bus.$on('clear', () => {
+      this.keyword = ''
+      console.log(666)
+    })
+  },
+  beforeDestroy() {
+    this.$bus.$off('clear')
+  },
   methods: {
     goSearch() {
       console.log(this.$route.query)
