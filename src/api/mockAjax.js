@@ -2,6 +2,7 @@ import axios from 'axios'
 import nprogress from 'nprogress'
 import "nprogress/nprogress.css";
 
+
 // 配置不显示右上角的旋转进度条, 只显示水平进度条
 nprogress.configure({ showSpinner: false })
 

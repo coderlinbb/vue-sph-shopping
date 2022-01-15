@@ -26,6 +26,7 @@ export default {
   components: { ListContainer, Recommend, Rank, Like, Floor, Brand },
   mounted() {
     this.$store.dispatch('getFloorlist')
+    this.$store.dispatch('getUserInfo')
   }
 }
 </script>

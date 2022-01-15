@@ -12,10 +12,25 @@ Vue.component(Pagination.name, Pagination)
 
 import '@/mock/mockServe.js'
 
+import * as API from '@/api'
 
 Vue.config.productionTip = false
 
 import "swiper/css/swiper.css"
+
+//element-ui
+import { Button, MessageBox } from 'element-ui';
+Vue.component(Button.name, Button);
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+
+import atm from '@/assets/images/atm.gif'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  loading: atm
+})
+
+import '@/plugins/validate'
 
 new Vue({
   render: h => h(App),
@@ -23,5 +38,6 @@ new Vue({
   store,
   beforeCreate() {
     Vue.prototype.$bus = this //安装全局事件总线
+    Vue.prototype.$API = API //安装全局事件总线
   },
 }).$mount('#app')

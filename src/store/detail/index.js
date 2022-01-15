@@ -1,4 +1,5 @@
 import { reqGetGoodsInfo, reqAddOrUpdateShopCart } from '@/api';
+import { getUUID } from '@/utils/uuid_token'
 
 const actions = {
   async getGoodInfo({ commit }, skuId) {
@@ -24,7 +25,8 @@ const mutations = {
 }
 
 const state = {
-  goodInfo: {}
+  goodInfo: {},
+  uuid_token: getUUID()
 }
 
 const getters = {
