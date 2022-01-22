@@ -1,5 +1,6 @@
 import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo, reqLogout } from '@/api'
 
+
 const actions = {
   async getCode({ commit }, phone) {
     let res = await reqGetCode(phone)
@@ -35,7 +36,6 @@ const actions = {
   },
   async getUserInfo({ commit }) {
     let res = await reqUserInfo()
-    console.log(res.data);
     if (res.code == 200) {
       commit('GETUSERINFO', res.data)
       return 'ok'
@@ -53,6 +53,7 @@ const actions = {
     }
   }
 }
+
 const mutations = {
   GETCODE(state, data) {
     state.code = data
@@ -69,12 +70,14 @@ const mutations = {
     localStorage.removeItem('TOKEN')
   }
 }
+
 const state = {
   code: '',
   token: localStorage.getItem('TOKEN') || '',
   userInfo: {},
 
 }
+
 const getters = {}
 
 export default {

@@ -7,7 +7,7 @@
         <div class="bread">
           <ul class="fl sui-breadcrumb">
             <li>
-              <a href="#">全部结果</a>
+              <a href="##">全部结果</a>
             </li>
           </ul>
           <ul class="fl sui-tag">

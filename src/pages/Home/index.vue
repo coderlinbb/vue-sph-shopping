@@ -24,9 +24,13 @@ export default {
     ...mapState({ floorList: state => state.home.floorList })
   },
   components: { ListContainer, Recommend, Rank, Like, Floor, Brand },
-  mounted() {
-    this.$store.dispatch('getFloorlist')
-    this.$store.dispatch('getUserInfo')
+  async mounted() {
+    try {
+      await this.$store.dispatch('getFloorlist')
+      await this.$store.dispatch('getUserInfo')
+    } catch (error) {
+      // console.log(error  )
+    }
   }
 }
 </script>

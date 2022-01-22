@@ -6,7 +6,7 @@
         <div class="loginform">
           <ul class="tab clearFix">
             <li>
-              <a href="##" style="border-right: 0;">扫描登录</a>
+              <a href="##" style="border-right: 0;">扫码登录</a>
             </li>
             <li>
               <a href="##" class="current">账户登录</a>
@@ -49,17 +49,17 @@
     <!-- 底部 -->
     <div class="copyright">
       <ul>
-        <li>关于我们</li>
-        <li>联系我们</li>
-        <li>联系客服</li>
-        <li>商家入驻</li>
-        <li>营销中心</li>
-        <li>手机尚品汇</li>
-        <li>销售联盟</li>
-        <li>尚品汇社区</li>
+        <li><a href="##">关于我们</a></li>
+        <li><a href="##">联系我们</a></li>
+        <li><a href="##">联系客服</a></li>
+        <li><a href="##">商家入驻</a></li>
+        <li><a href="##">营销中心</a></li>
+        <li><a href="##">手机尚品汇</a></li>
+        <li><a href="##">销售联盟</a></li>
+        <li><a href="##">尚品汇社区</a></li>
       </ul>
-      <div class="address">地址：北京市昌平区宏福科技园综合楼6层</div>
-      <div class="beian">京ICP备19006430号
+      <div class="address">地址：广东省东莞市xxxxxxx</div>
+      <div class="beian">粤ICP备123456789号
       </div>
     </div>
   </div>
@@ -81,14 +81,14 @@ export default {
         if (phone && password) {
           let res = await this.$store.dispatch('userLogin', { phone, password })
           if (res == '成功') {
-            alert('登录成功')
             if (this.$route.query.redirect) {
               this.$router.push(this.$route.query.redirect)
             } else {
               this.$router.push('/home')
             }
+            alert('登录成功')
           } else {
-            alert('账号密码不正确')
+            alert('您的账号密码不正确')
           }
         }
       } catch (error) {

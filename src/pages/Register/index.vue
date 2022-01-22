@@ -3,7 +3,7 @@
     <!-- 注册内容 -->
     <div class="register">
       <h3>注册新用户
-        <span class="go">我有账号，去 <a href="login.html" target="_blank">登陆</a>
+        <span class="go">我有账号，去 <router-link to="/login">登陆</router-link>
         </span>
       </h3>
       <div class="content">
@@ -93,6 +93,7 @@ export default {
           })
           //注册成功进行路由的跳转
           this.$router.push('/login')
+          alert('正常成功')
         } catch (error) {
           alert(error.message)
         }

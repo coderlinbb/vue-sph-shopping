@@ -1,62 +1,48 @@
-// import Home from '@/pages/Home'
-import Search from '@/pages/Search'
-import Login from '@/pages/Login'
-import Register from '@/pages/Register'
-import Detail from '@/pages/Detail'
-import AddCartSuccess from '@/pages/AddCartSuccess'
-import ShopCart from '@/pages/ShopCart'
-import Trade from '@/pages/Trade'
-import Pay from '@/pages/Pay'
-import PaySuccess from '@/pages/PaySuccess'
-import Center from '@/pages/Center'
-import MyOrder from '@/pages/Center/MyOrder'
-import GroupOrder from '@/pages/Center/GroupOrder'
-
 export default
   [
     {
       path: '/home',
-      component: _ => import('@/pages/Home'),
+      component: () => import('@/pages/Home'),
       meta: { show: true },
     },
     {
       name: 'search',
       path: '/search/:keyword?',
-      component: Search,
+      component: () => import('@/pages/Search'),
       meta: { show: true },
     },
     {
       path: '/login',
-      component: Login,
+      component: () => import('@/pages/Login'),
       meta: { show: false },
     },
     {
       path: '/register',
-      component: Register,
+      component: () => import('@/pages/Register'),
       meta: { show: false },
     },
     {
       name: 'detail',
       path: '/detail/:skuid',
-      component: Detail,
+      component: () => import('@/pages/Detail'),
       meta: { show: true },
     },
     {
       name: 'addcartsuccess',
       path: '/addcartsuccess',
-      component: AddCartSuccess,
+      component: () => import('@/pages/AddCartSuccess'),
       meta: { show: true },
     },
     {
       name: 'shopcart',
       path: '/shopcart',
-      component: ShopCart,
+      component: () => import('@/pages/ShopCart'),
       meta: { show: true },
     },
     {
       name: 'trade',
       path: '/trade',
-      component: Trade,
+      component: () => import('@/pages/Trade'),
       meta: { show: true },
       beforeEnter: (to, from, next) => {
         if (from.path == '/shopcart') {
@@ -69,7 +55,7 @@ export default
     {
       name: 'pay',
       path: '/pay',
-      component: Pay,
+      component: () => import('@/pages/Pay'),
       meta: { show: true },
       beforeEnter: (to, from, next) => {
         if (from.path == "/trade") {
@@ -82,22 +68,22 @@ export default
     {
       name: 'paysuccess',
       path: '/paysuccess',
-      component: PaySuccess,
+      component: () => import('@/pages/PaySuccess'),
       meta: { show: true },
     },
     {
-      name: 'center',
+      // name: 'center',
       path: '/center',
-      component: Center,
+      component: () => import('@/pages/Center'),
       meta: { show: true },
       children: [
         {
           path: 'myorder',
-          component: MyOrder
+          component: () => import('@/pages/Center/MyOrder')
         },
         {
           path: 'grouporder',
-          component: GroupOrder
+          component: () => import('@/pages/Center/GroupOrder')
         },
         {
           path: '',
