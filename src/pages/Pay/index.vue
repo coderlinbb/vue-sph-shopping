@@ -143,7 +143,7 @@ export default {
             this.$msgbox.close()
             this.$router.push('/paysuccess')
           }
-        }, 1000)
+        }, 2000)
       }
     }
   }

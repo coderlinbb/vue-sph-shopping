@@ -7,7 +7,6 @@
     </div>
     <!-- 如果需要分页器 -->
     <div class="swiper-pagination"></div>
-
     <!-- 如果需要导航按钮 -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
@@ -16,6 +15,7 @@
 
 <script>
 import Swiper from 'swiper'
+
 export default {
   name: 'Carousel',
   props: ['list'],
@@ -25,6 +25,7 @@ export default {
       handler() {
         this.$nextTick(() => {
           var mySwiper = new Swiper(this.$refs.cur, {
+            autoplay: true,
             loop: true,
             pagination: {
               el: '.swiper-pagination',

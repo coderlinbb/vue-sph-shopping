@@ -39,6 +39,8 @@ const actions = {
     if (res.code == 200) {
       commit('GETUSERINFO', res.data)
       return 'ok'
+    } else if (res.code == 208) {
+      // console.log(res.message);
     } else {
       return Promise.reject(new Error('failed'))
     }

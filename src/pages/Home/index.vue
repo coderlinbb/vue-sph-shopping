@@ -29,7 +29,7 @@ export default {
       await this.$store.dispatch('getFloorlist')
       await this.$store.dispatch('getUserInfo')
     } catch (error) {
-      // console.log(error  )
+      alert(error)
     }
   }
 }

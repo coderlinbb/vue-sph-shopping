@@ -28,12 +28,12 @@
             <a href="javascript:void(0)" class="plus" @click="handler('add',1,cart)">+</a>
           </li>
           <li class="cart-list-con6">
-            <span class="sum">{{cart.skuPrice *cart.skuNum}}</span>
+            <span class="sum">{{cart.skuPrice * cart.skuNum}}</span>
           </li>
           <li class="cart-list-con7">
             <a href="javascript:;" class="sindelet" @click="deleteCartById(cart)">删除</a>
             <br>
-            <a href="#none">移到收藏</a>
+            <a href="javascript:;">移到收藏</a>
           </li>
         </ul>
       </div>

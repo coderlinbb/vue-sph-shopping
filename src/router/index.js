@@ -36,14 +36,17 @@ router.beforeEach(async (to, from, next) => {
   let name = store.state.user.userInfo.name
 
   if (token) {
+
     if (to.path == '/login' || to.path == '/register') {
       next('/')
     } else {
       if (name) {
         next()
       } else {
+
         try {
           await store.dispatch('getUserInfo')
+          console.log(to, from);
           next()
         } catch (error) {
           store.dispatch('userLogout')

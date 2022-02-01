@@ -1,3 +1,5 @@
+
+
 export default
   [
     {
@@ -45,7 +47,7 @@ export default
       component: () => import('@/pages/Trade'),
       meta: { show: true },
       beforeEnter: (to, from, next) => {
-        if (from.path == '/shopcart') {
+        if (from.path == '/shopcart' || from.path == '/login') {
           next()
         } else {
           next(false)

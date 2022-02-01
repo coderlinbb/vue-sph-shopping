@@ -6,8 +6,8 @@
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
           <p v-if="!userName">
-            <span>请</span>
-            <router-link to='/login'>登录</router-link>
+            <span>请&nbsp;</span>
+            <router-link to='/login' style="color:red">登录</router-link>
             <router-link class="register" to='/register'>注册</router-link>
           </p>
           <p v-else>
@@ -30,13 +30,13 @@
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link class="logo" title="尚品汇" to="/home" target="self">
+        <router-link class="logo" title="首页" to="/home" target="self">
           <img src="./images/logo.png" alt="">
         </router-link>
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
-          <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyword" />
+          <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyword" autocomplete="on" />
           <button class="sui-btn btn-xlarge btn-danger" type="button" @click='goSearch'>
             搜索
           </button>
@@ -57,7 +57,6 @@ export default {
   mounted() {
     this.$bus.$on('clear', () => {
       this.keyword = ''
-      console.log(666)
     })
   },
   beforeDestroy() {
@@ -65,13 +64,9 @@ export default {
   },
   methods: {
     goSearch() {
-      console.log(this.$route.query)
-      if (this.$route.query) {
-        console.log(111)
-        let location = { name: 'search', params: { keyword: this.keyword || undefined } }
-        location.query = this.$route.query
-        this.$router.push(location)
-      }
+      let location = { name: 'search', params: { keyword: this.keyword || undefined } }
+      location.query = this.$route.query
+      this.$router.push(location)
     },
     async logout() {
       try {
